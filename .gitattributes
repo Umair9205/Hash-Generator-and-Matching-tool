@@ -1,4 +1,0 @@
-# Always use LF for Python and text files
-*.py text eol=lf
-*.md text eol=lf
-*.sh text eol=lf

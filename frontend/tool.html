@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HashUtility Tool – Generate and verify cryptographic hashes with MD5, SHA-256, SHA-512, BLAKE2 and more. Fast, secure, and privacy-focused.">
+    <title>HashUtility – Enterprise Cryptographic Hashing Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BACKGROUND -->
+    <canvas id="dot-grid-canvas"></canvas>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">HashUtility</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#tool-section">Tool</a></li>
+            <li><a href="#algorithms">Algorithms</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+    </nav>
+
+    <!-- TOOL HERO SECTION -->
+    <section id="tool-section" class="tool-hero section">
+        <div class="tool-hero-content fade">
+            <div class="tool-badge">
+                <span class="pulse-dot"></span>
+                <span>Enterprise-Grade Security</span>
+            </div>
+            <h1>Cryptographic <span class="gradient-text">Hashing Tool</span></h1>
+            <p class="tool-subtitle">
+                Generate, verify, and compare cryptographic hashes with military-grade algorithms. 
+                All processing happens locally — your data never leaves your browser.
+            </p>
+        </div>
+
+        <!-- Tool Cards Container -->
+        <div class="tool-cards-container fade">
+            <!-- Generate Hash Card -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <div class="card-icon generate-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <h2>Generate Hash</h2>
+                </div>
+                <p class="card-description">Convert any text into a secure cryptographic hash</p>
+                
+                <div class="input-group">
+                    <label for="textInput">Input Text</label>
+                    <textarea id="textInput" placeholder="Enter the text you want to hash..." rows="3"></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label for="algorithm">Algorithm</label>
+                    <div class="select-wrapper">
+                        <select id="algorithm">
+                            <option value="md5">MD5 (128-bit)</option>
+                            <option value="sha1">SHA-1 (160-bit)</option>
+                            <option value="sha256" selected>SHA-256 (256-bit)</option>
+                            <option value="sha512">SHA-512 (512-bit)</option>
+                            <option value="blake2s">BLAKE2s (256-bit)</option>
+                            <option value="blake2b">BLAKE2b (512-bit)</option>
+                        </select>
+                        <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <button id="generateBtn" class="primary-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                    Generate Hash
+                </button>
+                
+                <div class="output-container">
+                    <div class="output-header">
+                        <span>Hash Output</span>
+                        <button class="copy-btn" id="copyBtn" title="Copy to clipboard">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="output" class="output"></div>
+                </div>
+            </div>
+
+            <!-- Match Hash Card -->
+            <div class="tool-card">
+                <div class="card-header">
+                    <div class="card-icon match-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h2>Verify Hash</h2>
+                </div>
+                <p class="card-description">Check if a text matches a given hash value</p>
+                
+                <div class="input-group">
+                    <label for="matchText">Original Text</label>
+                    <textarea id="matchText" placeholder="Enter the original text..." rows="2"></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label for="matchHash">Hash to Verify</label>
+                    <textarea id="matchHash" placeholder="Paste the hash you want to verify..." rows="2"></textarea>
+                </div>
+                
+                <button id="matchBtn" class="secondary-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Verify Match
+                </button>
+                
+                <div class="output-container">
+                    <div class="output-header">
+                        <span>Verification Result</span>
+                    </div>
+                    <div id="matchOutput" class="output"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALGORITHMS SECTION -->
+    <section id="algorithms" class="algorithms-section section">
+        <div class="section-inner fade">
+            <h2>Supported <span class="gradient-text">Algorithms</span></h2>
+            <p class="section-subtitle">
+                Choose from industry-standard cryptographic hash functions for your security needs
+            </p>
+            
+            <div class="algorithm-grid">
+                <div class="algorithm-card">
+                    <div class="algo-badge deprecated">Legacy</div>
+                    <h3>MD5</h3>
+                    <p class="algo-bits">128-bit</p>
+                    <p class="algo-desc">Fast but cryptographically broken. Use only for checksums, not security.</p>
+                </div>
+                
+                <div class="algorithm-card">
+                    <div class="algo-badge deprecated">Legacy</div>
+                    <h3>SHA-1</h3>
+                    <p class="algo-bits">160-bit</p>
+                    <p class="algo-desc">Deprecated for security. Collision attacks demonstrated in 2017.</p>
+                </div>
+                
+                <div class="algorithm-card featured">
+                    <div class="algo-badge recommended">Recommended</div>
+                    <h3>SHA-256</h3>
+                    <p class="algo-bits">256-bit</p>
+                    <p class="algo-desc">Industry standard. Used in Bitcoin, SSL certificates, and most security applications.</p>
+                </div>
+                
+                <div class="algorithm-card">
+                    <div class="algo-badge secure">Secure</div>
+                    <h3>SHA-512</h3>
+                    <p class="algo-bits">512-bit</p>
+                    <p class="algo-desc">Maximum security for sensitive applications. Slower but more resistant to attacks.</p>
+                </div>
+                
+                <div class="algorithm-card">
+                    <div class="algo-badge modern">Modern</div>
+                    <h3>BLAKE2s</h3>
+                    <p class="algo-bits">256-bit</p>
+                    <p class="algo-desc">Faster than MD5, more secure than SHA-2. Optimized for 8-32 bit platforms.</p>
+                </div>
+                
+                <div class="algorithm-card">
+                    <div class="algo-badge modern">Modern</div>
+                    <h3>BLAKE2b</h3>
+                    <p class="algo-bits">512-bit</p>
+                    <p class="algo-desc">Fastest secure hash function. Used in Argon2, WireGuard, and modern crypto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section section">
+        <div class="about-container fade">
+            <div class="about-content">
+                <h2>Built for <span class="gradient-text">Security Professionals</span></h2>
+                <p>
+                    HashUtility is designed for developers, security analysts, and cybersecurity enthusiasts 
+                    who need a reliable, fast, and privacy-focused hashing tool.
+                </p>
+                <p>
+                    All cryptographic operations happen entirely in your browser using the Web Crypto API. 
+                    Your data is never transmitted to any server — ensuring complete privacy and zero data exposure.
+                </p>
+                
+                <div class="security-features">
+                    <div class="security-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <span>100% Client-Side Processing</span>
+                    </div>
+                    <div class="security-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        <span>Zero Data Transmission</span>
+                    </div>
+                    <div class="security-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>Web Crypto API Powered</span>
+                    </div>
+                    <div class="security-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        <span>Instant Hash Generation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-stats">
+                <div class="stat-card">
+                    <span class="stat-number">6+</span>
+                    <span class="stat-label">Hash Algorithms</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Data Stored</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Hashes Generated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Private & Secure</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section id="newsletter" class="newsletter-section section">
+        <div class="newsletter-container fade">
+            <div class="newsletter-glow"></div>
+            <h2>Stay <span class="gradient-text">Updated</span></h2>
+            <p>Get notified when we release new tools, security updates, and cryptographic insights.</p>
+            <form class="newsletter-form">
+                <div class="input-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <input type="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="subscribe-btn">
+                    Subscribe
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+            <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">HashUtility</span>
+                <p>Enterprise-grade cryptographic hashing tool</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="#tool-section">Tool</a>
+                <a href="#algorithms">Algorithms</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="footer-copy">
+                © 2025 HashUtility — All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
