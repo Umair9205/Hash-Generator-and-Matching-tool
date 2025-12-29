@@ -3,7 +3,7 @@
    =========================================================== */
 const AUDIO_SRC = "https://youtu.be/CKamNm4y3OU?si=5eELeuqNcP5NeRQn";
 
-const SPEED_THRESHOLD = 80.0;          // px/ms — speed required to trigger audio
+const SPEED_THRESHOLD = 20.0;          // px/ms — speed required to trigger audio
 const SPEED_COOLDOWN_MS = 2500;        // cooldown before next speed trigger
 const FFT_SIZE = 128;                  // lower FFT size → bigger visible bars
 
