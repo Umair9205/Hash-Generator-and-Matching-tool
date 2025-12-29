@@ -72,8 +72,8 @@ def hash_api():
 # -----------------------------
 # Newsletter / Subscribe
 # -----------------------------
-SMTP_EMAIL = os.getenv("SMTP_EMAIL")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+EMAIL = os.getenv("SMTP_EMAIL")
+PASSWORD = os.getenv("SMTP_PASSWORD")
       # <-- Gmail App Password
 SUBSCRIBER_FILE = "subscribers.txt"
 
@@ -92,7 +92,7 @@ def subscribe():
         # Send confirmation email
         msg = EmailMessage()
         msg["Subject"] = "Subscription Successful ✅"
-        msg["From"] = SMTP_EMAIL
+        msg["From"] = EMAIL
         msg["To"] = email
         msg.set_content(
             f"Hello!\n\nThank you for subscribing to our HashUtility newsletter.\n"
@@ -102,7 +102,7 @@ def subscribe():
 
         # Connect to Gmail SMTP
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(SMTP_EMAIL, SMTP_PASSWORD)
+            smtp.login(EMAIL, PASSWORD)
             smtp.send_message(msg)
 
         return jsonify({"success": True, "message": "Subscription successful!"})
