@@ -72,8 +72,8 @@ def hash_api():
 # -----------------------------
 # Newsletter / Subscribe
 # -----------------------------
-SMTP_EMAIL = os.getenv("SMTP_EMAIL")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+SMTP_EMAIL = ("hashutility.team@gmail.com")
+SMTP_PASSWORD = ("hiybjmmzfupmnvcb")
       # <-- Gmail App Password
 SUBSCRIBER_FILE = "subscribers.txt"
 
