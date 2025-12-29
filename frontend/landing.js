@@ -1,7 +1,7 @@
 /* ===========================================================
    CONFIG
    =========================================================== */
-const AUDIO_SRC = "https://youtu.be/CKamNm4y3OU?si=5eELeuqNcP5NeRQn";
+const AUDIO_SRC = "frontend/audio/TUTOR (Official Video) Cheema Y  Gur Sidhu  New Punjabi Song.mp3" ;
 
 const SPEED_THRESHOLD = 20.0;          // px/ms — speed required to trigger audio
 const SPEED_COOLDOWN_MS = 2500;        // cooldown before next speed trigger
