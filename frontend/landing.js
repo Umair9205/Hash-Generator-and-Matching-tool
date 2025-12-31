@@ -1,7 +1,7 @@
 /* ===========================================================
    CONFIG
    =========================================================== */
-const AUDIO_SRC = "frontend\audio\Yaar Anmulle   Sharry Mann  Team Punjabi Song.mp3" ;
+const AUDIO_SRC = "./audio/Yaar Anmulle   Sharry Mann  Team Punjabi Song.mp3" ;
 
 const SPEED_THRESHOLD = 25.0;          // px/ms — speed required to trigger audio
 const SPEED_COOLDOWN_MS = 2500;        // cooldown before next speed trigger
